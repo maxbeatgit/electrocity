@@ -1,0 +1,68 @@
+/* Burger */
+
+$burger-padding: 7px;
+$burger-width: 28px;
+$burger-height: 24px;
+$burger-bg: none;
+$burger-color: $black;
+$burger-line-width: 4px;
+$burger-line-radius: 50px;
+
+.burger {
+	padding: $burger-padding;
+	margin: $burger-padding * -1;
+	background: $burger-bg;
+	border: none;
+	position: relative;
+	z-index: 101;
+	display: none;
+	
+	@media (max-width: $mobile) {
+		display: block;
+  	}
+	
+	&__icon {
+		display: block;
+		width: $burger-width;
+		height: $burger-height;
+		position: relative;
+	}
+	&__line {
+		display: block;
+		background: $burger-color;
+		height: $burger-line-width;
+		border-radius: $burger-line-radius;
+		position: absolute;
+		width: 100%;
+		transition-duration: 0.2s;
+		transition-property: transform, top, bottom, opacity;
+		transition-delay: 0s, 0.1s, 0.1s, 0s;
+		
+		&_1 {top: 0;}
+		&_2 {top: 50%; transform: translateY(-50%);}
+		&_3 {bottom: 0;}
+	}
+	
+	&__icon_close {
+		.burger__line {
+			transition-duration: 0.2s;
+			transition-property: transform, top, bottom, opacity, width, margin;
+			transition-delay: 0.1s, 0s, 0s, 0s, 0.1s, 0.1s;
+			&_1 {
+				top: 50%;
+				transform: translateY(-50%) rotate(45deg);
+				width: 120%;
+				margin: 0 -10%;
+			}
+			&_2 {
+				opacity: 0;
+			}
+			&_3 {
+				bottom: 50%;
+				transform: translateY(50%) rotate(-45deg);
+				width: 120%;
+				margin: 0 -10%;
+			}
+		}
+	}
+}

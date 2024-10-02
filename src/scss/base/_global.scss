@@ -1,0 +1,42 @@
+/* Global */
+
+html {
+	display: flex;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	font-family: $font-family;
+	font-weight: 400;
+	font-size: $text-size;
+	color: $black;
+	background: $white; 
+	position: relative;
+}
+
+body > * {
+	width: 100%;
+	max-width: #{$max-width}px;
+	padding: 0 $section-padding;
+	margin: 0 auto;
+	position: relative;
+}
+
+body > *:has(+ footer) {
+	margin-bottom: 96px;
+
+	@media (max-width: $tablet) {
+		margin-bottom: 72px;
+	}
+	@media (max-width: $tablet) {
+		margin-bottom: 48px;
+	}
+}
+
+a, a:before, a > *, button {
+	transition: 0.3s;
+}
+p:not(:last-child) {
+	margin-bottom: 0.778em;
+}

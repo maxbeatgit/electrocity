@@ -1,0 +1,274 @@
+/* Header */
+
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px 25px;
+	margin-bottom: 36px;
+
+	@media (max-width: $mobile) {
+		margin-top: 20px;
+		margin-bottom: 24px;
+	}
+
+	&__top {
+		width: 100%;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-gap: 36px;
+		align-items: center;
+		height: 37px;
+		position: relative;
+
+		@media (max-width: $mobile) {
+			display: none;
+		}
+
+		&::after {
+			@include behind-fullwidth;
+			border-bottom: 2px solid #e8e8e8;
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		width: fit-content;
+		color: $lightblack;
+
+		&:hover, &:hover &-icon {
+			color: $accent;
+		}
+		
+		&-icon {
+			height: 20px;
+			width: 20px;
+			fill: currentColor;
+			color: $darkgray;
+		}
+	}
+
+	&__logo {
+		display: flex;
+		align-items: center;
+
+		@media (max-width: $mobile) {
+			flex: 1;
+		}
+	}
+
+	&__form {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		@media (max-width: $mobile) {
+			width: 100%;
+			flex: unset;
+			order: 2;
+		}
+	}
+
+	&__burger {
+		width: 24px;
+		height: 18px;
+		border: none;
+		border-top: 2px solid $darkgray;
+		border-bottom: 2px solid $darkgray;
+		flex-shrink: 0;
+		display: none;
+
+		&::before {
+			content:'';
+			display: block;
+			height: 2px;
+			background: $darkgray;
+		}
+
+		@media (max-width: $mobile) {
+			display: block;
+		}
+	}
+
+	&__search {
+		flex: 1;
+		width: 100%;
+		height: 46px;
+		border: 2px solid $mediumgray;
+		border-radius: 100px;
+		padding: 0 18px 0 50px;
+		font-size: 16px;
+		color: $lightblack;
+		background: url(../img/icons.svg#search) left 18px center / 26px no-repeat;
+
+		@media (max-width: $mobile) {
+			height: 38px;
+			padding-left: 42px;
+			background-size: 18px;
+		}
+
+		&::placeholder {
+			color: $darkgray;
+		}
+	}
+
+	&__usermenu {
+		display: flex;
+		gap: 24px;
+
+		&-link {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 2px;
+			color: $lightblack;
+	
+			&:hover {
+				color: $accent;
+			}
+
+			@media (max-width: $tablet) {
+				font-size: 0;
+				gap: 0;
+			}
+			
+			&_pc {
+				@media (max-width: $mobile) {
+					display: none;
+				}
+			}
+
+			&_mobile {
+				display: none;
+
+				@media (max-width: $mobile) {
+					display: block;
+				}
+			}
+		}
+		
+		&-icon {
+			width: 18px;
+			height: 18px;
+			fill: currentColor;
+			color: $darkgray;
+
+			@media (max-width: $tablet) {
+				width: 24px;
+				height: 24px;
+			}
+		}
+
+		&-link:hover &-icon {
+			color: $accent;
+		}
+	}
+
+	&__menu {
+		width: 100%;
+		position: relative;
+		order: 3;
+
+		&-list {
+			width: 100%;
+			display: flex;
+			gap: 36px;
+			overflow-x: auto;
+			scrollbar-width: none;
+
+			@media (max-width: $tablet) {
+				width: 100vw;
+				margin-left: calc($section-padding * -1);
+				padding: 0 $section-padding;
+			}
+
+			&::-webkit-scrollbar {
+				appearance: none;
+				-webkit-appearance: none;
+				width: 0;
+				height: 0;
+				display: none;
+			}
+		}
+		
+		&-link {
+			color: $lightblack;
+			white-space: nowrap;
+
+			&:hover {
+				color: $accent;
+			}
+
+			&_sale {
+				color: $accent;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+
+				&::before {
+					content:'';
+					display: block;
+					width: 18px;
+					height: 18px;
+					background: url(../img/icons.svg#discount) center / contain no-repeat;
+				}
+			}
+		}
+
+		&-btn {
+			width: 18px;
+			height: 18px;
+			border-radius: 100px;
+			border: 1px solid $darkgray;
+			background: $white;
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+
+			@media (max-width: $tablet) {
+				display: none;
+			}
+
+			&:hover {
+				background: $accent;
+				border-color: $accent;
+			}
+
+			&::before {
+				content:'';
+				display: block;
+				width: 5px;
+				height: 5px;
+				border-top: 1px solid $darkgray;
+				border-right: 1px solid $darkgray;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-70%,-50%) rotate(45deg);
+			}
+			&:hover::before {
+				border-color: $white;
+			}
+	
+			&_back {
+				left: 0;
+				transform: scaleX(-1);
+			}
+	
+			&_next {
+				right: 0;
+			}
+			
+			&_hide {
+				opacity: 0;
+  				pointer-events: none;
+			}
+		}
+	
+	}
+
+}

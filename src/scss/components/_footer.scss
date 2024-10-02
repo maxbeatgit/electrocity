@@ -1,0 +1,128 @@
+/* Footer */
+
+.footer {
+	margin-top: auto;
+	margin-bottom: 54px;
+	padding-top: 36px;
+	padding-bottom: 18px;
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	grid-auto-flow: dense;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 36px;
+
+	@media (max-width: $tablet) {
+		margin-bottom: 15px;
+		grid-gap: 24px;
+	}
+	@media (max-width: $mobile) {
+		margin-bottom: 0;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		grid-template-columns: 1fr;
+		grid-gap: 10px;
+	}
+
+	&::after {
+		@include behind-fullwidth;
+		background: $lightgray;
+	}
+
+	&__menu,	
+	&__contacts {
+		display: flex;
+		gap: 62px;
+
+		@media (max-width: $tablet) {
+			gap: 10px 24px;
+		}
+	}
+	&__contacts {
+		@media (max-width: $mobile) {
+			flex-direction: column;
+			margin-top: 10px;
+		}
+	}
+
+	&__link {
+		color: $lightblack;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		@media (max-width: $mobile) {
+			font-size: 14px;
+		}
+
+		&:hover, &:hover &-icon {
+			color: $accent;
+		}
+
+		&-icon {
+			height: 20px;
+			width: 25px;
+			fill: currentColor;
+			color: $darkgray;
+
+			@media (max-width: $mobile) {
+				width: 20px;
+			}
+		}
+	}
+
+	&__social {
+		grid-column: 2;
+		justify-content: end;
+		display: flex;
+		gap: 12px;
+
+		@media (max-width: $tablet) {
+			grid-row: 1 / span 3;
+			align-self: start;
+		}
+		@media (max-width: $mobile) {
+			grid-column: 1;
+			grid-row: 3;
+			justify-self: start;
+			margin-bottom: 14px;
+		}
+	}
+	&__social-link {
+		width: 40px;
+		height: 40px;
+		border-radius: 100px;
+		border: 1px solid $darkgray;
+		background: $white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@media (max-width: $mobile) {
+			width: 30px;
+			height: 30px;
+		}
+
+		img {
+			max-width: 64%;
+		}
+		
+		&:hover {
+			border-color: $accent;
+			background: $accent;
+			img {
+				filter: brightness(1000%);
+			}
+		}
+	}
+
+	&__copyright {
+		font-size: 14px;
+		line-height: 1.5;
+		color: $darkgray;
+
+		@media (max-width: $mobile) {
+			font-size: 12px;
+		}
+	}
+}

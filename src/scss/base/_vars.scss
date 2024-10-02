@@ -1,0 +1,37 @@
+$font-family: 'Roboto', sans-serif;
+$second-family: 'Rosario', sans-serif;
+
+$accent: #E11C4B;
+$white: #FFFFFF;
+$black: #000000;
+$lightblack: #333333;
+$gray: #939393;
+$darkgray: #8D8D8D;
+$mediumgray: #DDDDDD;
+$softgray: #E8E8E8;
+$lightgray: #F4F4F4;
+
+$max-width: 1210; // максимальная ширина контентной части по макету вместе с паддингами по бокам
+$min-width: 320; // минимальная ширина контентной части (для вычисления adaptive)
+$tablet: 900px; // media max-width для планшетов
+$mobile: 670px; // media max-width для мобильных
+
+// функция для адаптивного изменения размеров от max до min на разрешении от max-width до min-width
+@function adaptive($min, $max) {
+	@return clamp(#{$min}px, #{$min}px + (#{$max} - #{$min}) * ((100vw - #{$min-width}px) / ($max-width - $min-width)), #{$max}px);
+}
+
+$section-padding: adaptive(10, 30); // min, max отступы в секциях по бокам
+$text-size: 16px; // размер основного текста
+
+// фоновая подложка для секций на всю ширину экрана
+@mixin behind-fullwidth {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: calc((100% - 100vw) / 2);
+	right: calc((100% - 100vw) / 2);
+	z-index: -1;
+}
