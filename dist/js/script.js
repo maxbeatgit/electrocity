@@ -6,56 +6,43 @@ let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navig
 if (isSafari) {
 	document.documentElement.classList.add('safari');
 }
-;// CONCATENATED MODULE: ./src/js/modules/iswebp.js
-// check support webp
-function isWebp(callback) {
-	const webP = new Image();
-	webP.onload = webP.onerror = function () {
-		 callback(webP.height === 2);
-	};
-	webP.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
-}
-// add class webp/no-webp to html
-isWebp(function (support) {
-	let className = support === true ? 'webp' : 'no-webp';
-	document.documentElement.classList.add(className);
-});
 ;// CONCATENATED MODULE: ./src/js/modules/scrollmenu.js
 document.addEventListener('DOMContentLoaded', function () {
-	const navList = document.querySelector('.header__menu-list');
-	const arrowNext = document.querySelector('.header__menu-btn_next');
-	const arrowBack = document.querySelector('.header__menu-btn_back');
+	const navList = document.querySelector('.menu__list');
+	const btnNext = document.querySelector('.menu__btn_next');
+	const btnBack = document.querySelector('.menu__btn_back');
+	const hide = 'menu__btn_hide';
 
 	const scrollAmount = 200; // Количество пикселей для прокрутки
 
 	// Функция для проверки положения прокрутки
-	function checkScrollPosition() {
+	function checkScroll() {
 		const maxScrollLeft = navList.scrollWidth - navList.clientWidth;
 
 		if (navList.scrollLeft === 0) {
-			arrowBack.classList.add('header__menu-btn_hide'); // скрываем кнопку назад
+			btnBack.classList.add(hide); // скрываем кнопку назад
 		} else {
-			arrowBack.classList.remove('header__menu-btn_hide'); // показываем кнопку назад
+			btnBack.classList.remove(hide); // показываем кнопку назад
 		}
 
 		if (navList.scrollLeft >= maxScrollLeft - 5) {
-			arrowNext.classList.add('header__menu-btn_hide'); // скрываем кнопку вперед
+			btnNext.classList.add(hide); // скрываем кнопку вперед
 		} else {
-			arrowNext.classList.remove('header__menu-btn_hide'); // показываем кнопку вперед
+			btnNext.classList.remove(hide); // показываем кнопку вперед
 		}
 	}
 
 	// проверяем положение прокрутки
-	checkScrollPosition();
+	checkScroll();
 
-	arrowNext.addEventListener('click', () => {
+	btnNext.addEventListener('click', () => {
 		navList.scrollBy({
 			left: scrollAmount,
 			behavior: 'smooth' // Плавная прокрутка
 		});
 	});
 
-	arrowBack.addEventListener('click', () => {
+	btnBack.addEventListener('click', () => {
 		navList.scrollBy({
 			left: -scrollAmount,
 			behavior: 'smooth'
@@ -63,8 +50,35 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	// Следим за изменениями прокрутки
-	navList.addEventListener('scroll', checkScrollPosition);
+	navList.addEventListener('scroll', checkScroll);
 
+});
+;// CONCATENATED MODULE: ./src/js/modules/catalog.js
+document.addEventListener('DOMContentLoaded', function () {
+	const html = document.documentElement;
+	const burger = document.querySelector('.header__burger');
+	const catalog = document.querySelector('.catalog');
+	const closeBtn = document.querySelector('.catalog__close');
+	const disableScroll = 'scroll-disable';
+	const open = 'catalog_open';
+
+	// open catalog
+	const openCatalog = (event) => {
+		event.preventDefault();
+		html.classList.add(disableScroll);
+		catalog.classList.add(open);
+	};
+
+	// close catalog
+	const closeMenu = (event) => {
+		event.preventDefault();
+		html.classList.remove(disableScroll);
+		catalog.classList.remove(open);
+	};
+
+	// click on buttons
+	burger.addEventListener('click', openCatalog);
+	closeBtn.addEventListener('click', closeMenu);
 });
 ;// CONCATENATED MODULE: ./src/js/script.js
 

@@ -18,7 +18,7 @@ export const path = {
 		scss: `${srcDir}/scss/style.scss`,
 		html: `${srcDir}/*.html`,
 		images: `${srcDir}/img/**/*.{jpg,jpeg,png,gif,svg,webp}`,
-		svgicons: `${srcDir}/img/icons/*.svg`,
+		svgicons: `${srcDir}/img/svgicons/*.svg`,
 		fonts: `${srcDir}/fonts/**/*.woff2`,
 	},
 	watch: {
@@ -26,6 +26,7 @@ export const path = {
 		scss: `${srcDir}/scss/**/*.scss`,
 		html: `${srcDir}/**/*.html`,
 		images: `${srcDir}/img/**/*.{jpg,jpeg,png,gif,svg,webp}`,
+		svgicons: `${srcDir}/img/svgicons/*.svg`,
 		fonts: `${srcDir}/fonts/**/*.*`,
 	},
 	buildDir: buildDir,

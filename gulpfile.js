@@ -75,7 +75,7 @@ export const html = () => {
 		.pipe(prettify({
 			indent_size: 1,
 			indent_char: '\t',
-			unformatted: ['a', 'span']
+			unformatted: ['span']
 		}))
 		.pipe(gulp.dest(path.build.html))
 		.pipe(browsersync.stream());
@@ -172,7 +172,7 @@ export const js = () => {
 /* Images */
 // для разработки
 export const copyimages = () => {
-	return gulp.src(path.src.images, { encoding: false })
+	return gulp.src([path.src.images, `!${path.src.svgicons}`], { encoding: false })
 		.pipe(plumber(plumberNotify('IMAGES', true)))
 		.pipe(newer(path.build.images))
 		.pipe(gulp.dest(path.build.images))
@@ -180,7 +180,7 @@ export const copyimages = () => {
 }
 // для продакшн
 export const minimages = () => {
-	return gulp.src(path.src.images, { encoding: false })
+	return gulp.src([path.src.images, `!${path.src.svgicons}`], { encoding: false })
 		.pipe(plumber(plumberNotify('IMAGES', true)))
 		.pipe(newer(path.build.images))
 		.pipe(gulpIf(file => {
@@ -205,13 +205,14 @@ export const svgicons = () => {
 				}
 			}
 		}))
-		.pipe(gulp.dest(path.build.images));
+		.pipe(gulp.dest(path.build.images))
+		.pipe(browsersync.stream());
 }
 
 /* Webp */
 // конвертация изображений в webp
 export const imageswebp = () => {
-	return gulp.src(path.src.images, { encoding: false })
+	return gulp.src([path.src.images, `!${path.src.svgicons}`], { encoding: false })
 		.pipe(plumber(plumberNotify('IMAGESWEBP', true)))
 		.pipe(newer(path.build.images))
 		.pipe(gulpIf(file => {
@@ -281,6 +282,7 @@ function watcher() {
 	gulp.watch(path.watch.scss, scss);
 	gulp.watch(path.watch.js, js);
 	gulp.watch(path.watch.images, copyimages);
+	gulp.watch(path.watch.svgicons, svgicons);
 	gulp.watch(path.watch.fonts, fonts);
 }
 

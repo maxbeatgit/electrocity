@@ -1,0 +1,41 @@
+.mobilemenu {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 50;
+	display: flex;
+	justify-content: space-between;
+	background: $white;
+	box-shadow: 0 -3px 13px 0 rgba(146, 146, 146, 0.25);
+	padding-top: 13px;
+	padding-bottom: 11px;
+	display: none;
+
+	@media (max-width: $mobile) {
+		display: flex;
+	}
+
+	&__icon {
+		width: 24px;
+		height: 24px;
+		color: $darkgray;
+	}
+
+	&__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		color: $lightblack;
+		font-size: 10px;
+
+		&_active {
+			color: $accent;
+		}
+	}
+	
+	&__link_active &__icon {
+		color: $accent;
+	}
+}

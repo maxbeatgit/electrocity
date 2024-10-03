@@ -6,11 +6,13 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 20px 25px;
-	margin-bottom: 36px;
+	margin-bottom: 20px;
 
+	@media (max-width: $tablet) {
+		margin-bottom: 18px;
+	}
 	@media (max-width: $mobile) {
 		margin-top: 20px;
-		margin-bottom: 24px;
 	}
 
 	&__top {
@@ -103,7 +105,7 @@
 		padding: 0 18px 0 50px;
 		font-size: 16px;
 		color: $lightblack;
-		background: url(../img/icons.svg#search) left 18px center / 26px no-repeat;
+		background: url(../img/icons.svg#search-red) left 18px center / 26px no-repeat;
 
 		@media (max-width: $mobile) {
 			height: 38px;
@@ -154,7 +156,6 @@
 		&-icon {
 			width: 18px;
 			height: 18px;
-			fill: currentColor;
 			color: $darkgray;
 
 			@media (max-width: $tablet) {
@@ -167,108 +168,4 @@
 			color: $accent;
 		}
 	}
-
-	&__menu {
-		width: 100%;
-		position: relative;
-		order: 3;
-
-		&-list {
-			width: 100%;
-			display: flex;
-			gap: 36px;
-			overflow-x: auto;
-			scrollbar-width: none;
-
-			@media (max-width: $tablet) {
-				width: 100vw;
-				margin-left: calc($section-padding * -1);
-				padding: 0 $section-padding;
-			}
-
-			&::-webkit-scrollbar {
-				appearance: none;
-				-webkit-appearance: none;
-				width: 0;
-				height: 0;
-				display: none;
-			}
-		}
-		
-		&-link {
-			color: $lightblack;
-			white-space: nowrap;
-
-			&:hover {
-				color: $accent;
-			}
-
-			&_sale {
-				color: $accent;
-				display: flex;
-				align-items: center;
-				gap: 6px;
-
-				&::before {
-					content:'';
-					display: block;
-					width: 18px;
-					height: 18px;
-					background: url(../img/icons.svg#discount) center / contain no-repeat;
-				}
-			}
-		}
-
-		&-btn {
-			width: 18px;
-			height: 18px;
-			border-radius: 100px;
-			border: 1px solid $darkgray;
-			background: $white;
-			cursor: pointer;
-			position: absolute;
-			top: 0;
-
-			@media (max-width: $tablet) {
-				display: none;
-			}
-
-			&:hover {
-				background: $accent;
-				border-color: $accent;
-			}
-
-			&::before {
-				content:'';
-				display: block;
-				width: 5px;
-				height: 5px;
-				border-top: 1px solid $darkgray;
-				border-right: 1px solid $darkgray;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-70%,-50%) rotate(45deg);
-			}
-			&:hover::before {
-				border-color: $white;
-			}
-	
-			&_back {
-				left: 0;
-				transform: scaleX(-1);
-			}
-	
-			&_next {
-				right: 0;
-			}
-			
-			&_hide {
-				opacity: 0;
-  				pointer-events: none;
-			}
-		}
-	
-	}
-
 }

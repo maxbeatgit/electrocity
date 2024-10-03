@@ -1,69 +1,110 @@
 /* Menu */
 
 .menu {
+	width: 100%;
+	position: relative;
+	margin-bottom: 36px;
 
-	&__body {
+	@media (max-width: $mobile) {
+		margin-bottom: 25px;
+	}
+
+	&__list {
+		width: 100%;
 		display: flex;
-		align-items: center;
-		gap: 30px;
+		gap: 36px;
+		overflow-x: auto;
+		scrollbar-width: none;
+	
+		@media (max-width: $tablet) {
+			width: 100vw;
+			margin-left: calc($section-padding * -1);
+			padding: 0 $section-padding;
+		}
+	
+		&::-webkit-scrollbar {
+			appearance: none;
+			-webkit-appearance: none;
+			width: 0;
+			height: 0;
+			display: none;
+		}
 	}
 
 	&__link {
 		color: $lightblack;
+		white-space: nowrap;
 
-		@media (hover: hover) {
-			&:hover {
-				color: $accent;
+		&:hover {
+			color: $accent;
+		}
+
+		&_active {
+			color: $accent;
+		}
+
+		&_sale {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+
+			&::before {
+				content:'';
+				display: block;
+				width: 18px;
+				height: 18px;
+				background: url(../img/icons.svg#discount) center / contain no-repeat;
 			}
 		}
 	}
-}
 
-
-
-/* Mobile menu */
-
-@media (max-width: $mobile) {
-	.menu {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100vh;
-		border-top: 80px solid transparent;
-		padding-bottom: calc(100vh - 100svh + 40px);
-		padding-left: $section-padding;
-		padding-right: $section-padding;
+	&__btn {
+		width: 18px;
+		height: 18px;
+		border-radius: 100px;
+		border: 1px solid $darkgray;
 		background: $white;
-		overflow: auto;
-		display: flex;
-		transform: translateY(-100%);
-		transition: transform 0.4s;
-		z-index: 100;
+		cursor: pointer;
+		position: absolute;
+		top: 0;
 
-		&_open {
-			transform: translateY(0);
+		@media (max-width: $tablet) {
+			display: none;
+		}
+
+		&:hover {
+			background: $accent;
+			border-color: $accent;
+		}
+
+		&::before {
+			content:'';
+			display: block;
+			width: 5px;
+			height: 5px;
+			border-top: 1px solid $darkgray;
+			border-right: 1px solid $darkgray;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-70%,-50%) rotate(45deg);
+		}
+		&:hover::before {
+			border-color: $white;
+		}
+
+		&_back {
+			left: $section-padding;
+			transform: scaleX(-1);
+		}
+
+		&_next {
+			right: $section-padding;
 		}
 		
-		&__body {
-			width: 100%;
-			margin: auto;
-			flex-direction: column;
+		&_hide {
+			opacity: 0;
+			  pointer-events: none;
 		}
-		&__link {
-			color: $lightblack;
-			display: block;
-			text-align: center;
-		}
-	}
-	.menu > * {
-		transition: 0.2s 0s; 
-		transform: translateY(-100px); 
-		opacity: 0;
-	}
-	.menu_open > * {
-		transition: 0.4s 0.2s; 
-		transform: translateY(0); 
-		opacity: 1;
 	}
 }

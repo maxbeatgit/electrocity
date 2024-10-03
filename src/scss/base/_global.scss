@@ -23,20 +23,13 @@ body > * {
 	position: relative;
 }
 
-body > *:has(+ footer) {
-	margin-bottom: 96px;
-
-	@media (max-width: $tablet) {
-		margin-bottom: 72px;
-	}
-	@media (max-width: $tablet) {
-		margin-bottom: 48px;
-	}
-}
-
 a, a:before, a > *, button {
 	transition: 0.3s;
 }
 p:not(:last-child) {
 	margin-bottom: 0.778em;
+}
+
+svg {
+	fill: currentColor;
 }
